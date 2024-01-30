@@ -68,7 +68,7 @@ function displayForecast(forecastData) {
 
         card.innerHTML = `
             <div class="card-body">
-                <p>Date: ${new Date(forecast.dt * 1000).toLocaleDateString('en-GB')}</p>
+                <p><b>${new Date(forecast.dt * 1000).toLocaleDateString('en-GB')}</b></p>
                 <p>Temperature: ${forecast.main.temp} °C</p>
                 <p>Humidity: ${forecast.main.humidity}%</p>
                 <p>Wind: ${forecast.wind.speed} m/s</p>
