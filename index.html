@@ -1,69 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Weather Dashboard</title>
     <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
-
-
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Title Row -->
     <div class="title-row">
-        <h1>Weather Dashboard</h1>
+      <h1>Weather Dashboard</h1>
     </div>
 
     <div class="container-fluid">
-        <div class="row">
+      <div class="row">
+        <!-- Left Navigation Bar (25% width) -->
+        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+          <!-- Rendered Buttons will get Dumped Here -->
+          <form id="searchForm">
+            <div class="form-group">
+              <label form="cityInput"><h5>Search for a City:</h5></label>
+              <input
+                type="text"
+                class="form-control"
+                id="cityInput"
+                placeholder="Enter a City Name"
+                required
+              />
+            </div>
+            <!-- Button triggers new city to be added -->
+            <button type="submit" class="add-city btn btn-primary">
+              Search
+            </button>
+          </form>
+ <!--Horizontal line-->
+          <hr class="solid">
 
-            <!-- Left Navigation Bar (25% width) -->
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-                <!-- Rendered Buttons will get Dumped Here -->
-                <form id="searchForm">
-                    <div class="form-group">
-                        <label form="cityInput"><h5>Search for a City:</h5></label>
-                        <input type="text" class="form-control" id="cityInput" placeholder="Enter a City Name" required>
-                    </div>
-                    <!-- Button triggers new city to be added -->
-                    <button type="submit" class="add-city">Search</button>
-                </form>
-                <div id="searchHistory">
-                    <h4>Search History:</h4>
-                    <!-- Rendered Buttons will display Here -->
-                </div>
-            </nav>
 
-            <!-- Main Content (75% width) -->
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
-                <!-- Main Summary Row -->
-                <!-- WEATHER SCRIPT OUTPUT USING THIS ONE-->
-                <div class="summary-content">
-                    <div class="col-md-6" id="currentWeather">
-                        <!-- Current weather details will be displayed here -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4 class="mt-4">5-Day Forecast</h4>
-                        <div class="forecast-cards" id="forecastCards">
-                            <!-- 5-day forecast cards will be displayed here -->
-                        </div>
-                    </div>
-                </div>
-                <div class="forecast-container" id="forecastContainer">
-                    <!-- 5-day forecast cards will be displayed here -->
-                </div>
-                <!-- WEATHER SCRIPT OUTPUT ABOVE USING THIS ONE -->
-            </main>
-        </div>
+          <div id="searchHistory">
+            <!-- Rendered Buttons will display Here -->
+          </div>
+        </nav>
+
+        <!-- Main Content (75% width) -->
+        <main
+          role="main"
+          class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content"
+        >
+          <!-- Main Summary Row -->
+          <!-- WEATHER SCRIPT OUTPUT USING THIS ONE-->
+          <div class="summary-content">
+            <div class="col-md-6" id="currentWeather">
+         <!-- Current weather details will be displayed here -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="mt-4">5-Day Forecast</h4>
+              <div class="forecast-cards" id="forecastCards">
+         <!-- 5-day forecast cards will be displayed here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- WEATHER SCRIPT OUTPUT ABOVE USING THIS ONE -->
+        </main>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
-</body>
+  </body>
 </html>
