@@ -1,0 +1,88 @@
+body {
+    padding-top: 0px; 
+}
+
+/* Title Row Styles */
+.title-row {
+    background-color: #3498db; 
+    color: #fff; /* Text color for the title row */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Navigation Bar Styles */
+.sidebar {
+    background-color: #fff; 
+    color: #050000; /* Text color for the sidebar */
+    padding: 20px;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+}
+
+/* Cards Styles */
+.card {
+    margin-right: 0px;
+    margin-bottom: 20px;
+}
+
+
+.five-day  {
+   padding: 0px 0px 0px 0px;
+   flex: auto;
+    }
+
+div,
+form,
+    input {
+    margin: 5px;
+    width: 100%;
+    }
+
+#add-movie { 
+    background-color: #03A9F4;
+    color: #fff;
+    width: 100%;
+    border-radius: 8px;
+
+}   
+
+.movie-btn { 
+    background-color: slategray;
+    margin: 5px;
+    width: 100%;
+    color: #fff;
+    border-radius: 8px;
+
+
+} 
+
+
+        /* Custom styles go here */
+        .forecast-cards {
+            display: flex;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .forecast-card {
+            flex: 0 0 auto;
+            width: 18%;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 576px) {
+            .forecast-cards {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            .forecast-card {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+

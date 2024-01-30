@@ -1,141 +1,146 @@
-// This is our API key
-var APIKey = "166a433c57516f51dfab1f7edaed8413";
+const apiKey = '166a433c57516f51dfab1f7edaed8413';
+const searchForm = document.getElementById('searchForm');
+const searchHistory = document.getElementById('searchHistory');
+const cityInput = document.getElementById('cityInput');
+const currentWeather = document.getElementById('currentWeather');
+const forecastCards = document.getElementById('forecastCards');
 
-// Here we are building the URL we need to query the database
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-  "q=London,United Kingdom&appid=" + APIKey;
+// Function to fetch current weather data
+async function fetchCurrentWeather(city) {
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching current weather data:', error);
+        throw error;
+    }
+}
 
-// // Here we run our Fetch call to the OpenWeatherMap API
-// fetch(queryURL)
-//   .then(function (response) {
-//     // Calling .json() to access the json data stored inside the returned promise
-//     return response.json();
-//   })
-//   // We store all of the retrieved data inside of an object called "data"
-//   .then(function (data) {
+// Function to fetch 5-day forecast data with one update per day at 12:00
+async function fetchForecast(city) {
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}&cnt=40`);
+        const data = await response.json();
 
-//     // Log the queryURL
-//     console.log(queryURL);
+        // Filter data to get only one update per day at 12:00
+        const dailyForecasts = filterDailyForecasts(data.list);
 
-//     // Log the resulting object
-//     console.log(data);
+        return dailyForecasts;
+    } catch (error) {
+        console.error('Error fetching forecast data:', error);
+        throw error;
+    }
+}
 
-//     // Transfer content to HTML
-//     $(".city").html("<h1>" + data.name + " Weather Details</h1>");
-//     $(".wind").text("Wind Speed: " + data.wind.speed);
-//     $(".humidity").text("Humidity: " + data.main.humidity);
+// Helper function to filter one update per day at 12:00
+function filterDailyForecasts(forecasts) {
+    const filteredForecasts = {};
 
-//     // Convert the temp to Celsius
-//     var tempC = data.main.temp - 273.15;
+    forecasts.forEach(forecast => {
+        const date = new Date(forecast.dt * 1000);
+        const key = date.toDateString(); // Group by date
 
-//     // add temp content to html
-//     $(".temp").text("Temperature (K) " + data.main.temp);
-//     $(".tempC").text("Temperature (C) " + tempC.toFixed(2));
+        if (date.getHours() === 12 && date.getMinutes() === 0 && !filteredForecasts[key]) {
+            filteredForecasts[key] = forecast;
+        }
+    });
 
-//     // Log the data in the console as well
-//     console.log("Wind Speed: " + data.wind.speed);
-//     console.log("Humidity: " + data.main.humidity);
-//     console.log("Temperature (C): " + tempC);
-//   });
+    return Object.values(filteredForecasts);
+}
 
-  // Initial array of movies
-var movies = ["The Matrix", "Dune", "Mr. Right", "The Lion King"];
+// Function to display current weather details
+function displayCurrentWeather(data) {
+    currentWeather.innerHTML = `
+        <h4>${data.name}, ${new Date(data.dt * 1000).toLocaleDateString('en-GB')}</h4>
+        <p>Temperature: ${data.main.temp} °C</p>
+        <p>Wind: ${data.wind.speed} m/s</p>
+        <p>Humidity: ${data.main.humidity}%</p>
+    `;
+}
 
-// displayMovieInfo function re-renders the HTML to display the appropriate content
-function displayMovieInfo() {
+// Function to display 5-day forecast with one update per day at 12:00
+function displayForecast(forecastData) {
+    forecastCards.innerHTML = '';
+    forecastData.forEach(forecast => {
+        const card = document.createElement('div');
+        card.classList.add('card', 'forecast-card');
 
-  var movie = $(this).attr("data-name");
-  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+        card.innerHTML = `
+            <div class="card-body">
+                <p>Date: ${new Date(forecast.dt * 1000).toLocaleDateString('en-GB')}</p>
+                <p>Temperature: ${forecast.main.temp} °C</p>
+                <p>Humidity: ${forecast.main.humidity}%</p>
+                <p>Wind: ${forecast.wind.speed} m/s</p>
+            </div>
+        `;
 
-  // Creates a Fetch call for the specific movie button being clicked
-  fetch(queryURL)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // Creating a div to hold the movie
-      var movieDiv = $("<div class='movie'>");
-
-      // Storing the rating data
-      var rating = data.Rated;
-
-      // Creating an element to have the rating displayed
-      var pOne = $("<p>").text("Rating: " + rating);
-
-      // Displaying the rating
-      movieDiv.append(pOne);
-
-      // Storing the release year
-      var released = data.Released;
-
-      // Creating an element to hold the release year
-      var pTwo = $("<p>").text("Released: " + released);
-
-      // Displaying the release year
-      movieDiv.append(pTwo);
-
-      // Storing the plot
-      var plot = data.Plot;
-
-      // Creating an element to hold the plot
-      var pThree = $("<p>").text("Plot: " + plot);
-
-      // Appending the plot
-      movieDiv.append(pThree);
-
-      // Retrieving the URL for the image
-      var imgURL = data.Poster;
-
-      // Creating an element to hold the image
-      var image = $("<img>").attr("src", imgURL);
-
-      // Appending the image
-      movieDiv.append(image);
-
-      // Putting the entire movie above the previous movies
-      $("#movies-view").prepend(movieDiv);
+        forecastCards.appendChild(card);
     });
 }
 
-// Function for displaying movie data
-function renderButtons() {
-
-  // Deleting the movies prior to adding new movies
-  // (this is necessary otherwise you will have repeat buttons)
-  $("#buttons-view").empty();
-
-  // Looping through the array of movies
-  for (var i = 0; i < movies.length; i++) {
-
-    // Then dynamicaly generating buttons for each movie in the array
-    // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-    var a = $("<button>");
-    // Adding a class of movie-btn to our button
-    a.addClass("movie-btn");
-    // Adding a data-attribute
-    a.attr("data-name", movies[i]);
-    // Providing the initial button text
-    a.text(movies[i]);
-    // Adding the button to the buttons-view div
-    $("#buttons-view").append(a);
-  }
+// Function to display search history
+function displaySearchHistory(history) {
+    searchHistory.innerHTML = '';
+    history.forEach(city => {
+        const historyItem = document.createElement('p');
+        historyItem.classList.add('mb-0', 'text-primary', 'search-history-item');
+        historyItem.innerText = city;
+        historyItem.addEventListener('click', () => handleHistoryItemClick(city));
+        searchHistory.appendChild(historyItem);
+    });
 }
 
-// This function handles events where a movie button is clicked
-$("#add-movie").on("click", function (event) {
-  event.preventDefault();
-  // This line grabs the input from the textbox
-  var movie = $("#movie-input").val().trim();
+// Function to handle form submission
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    const city = cityInput.value.trim();
 
-  // Adding movie from the textbox to our array
-  movies.push(movie);
+    if (city !== '') {
+        try {
+            const currentWeatherData = await fetchCurrentWeather(city);
 
-  // Calling renderButtons which handles the processing of our movie array
-  renderButtons();
-});
+            if (currentWeatherData.cod === '404') {
+                alert('City not found. Please enter a valid city name.');
+            } else {
+                displayCurrentWeather(currentWeatherData);
 
-// Adding a click event listener to all elements with a class of "movie-btn"
-$(document).on("click", ".movie-btn", displayMovieInfo);
+                const forecastData = await fetchForecast(city);
+                displayForecast(forecastData);
 
-// Calling the renderButtons function to display the initial buttons
-renderButtons();
+                let history = JSON.parse(localStorage.getItem('weatherSearchHistory')) || [];
+                if (!history.includes(city)) {
+                    history.push(city);
+                    localStorage.setItem('weatherSearchHistory', JSON.stringify(history));
+                    displaySearchHistory(history);
+                }
+            }
+        } catch (error) {
+            console.error('Error handling form submission:', error);
+        }
+    } else {
+        alert('Please enter a city name.');
+    }
+}
+
+// Function to handle search history item click
+async function handleHistoryItemClick(city) {
+    cityInput.value = city;
+    await handleFormSubmit(new Event('submit'));
+}
+
+// Initial setup
+function initialize() {
+    searchForm.addEventListener('submit', handleFormSubmit);
+
+    const history = JSON.parse(localStorage.getItem('weatherSearchHistory')) || [];
+    displaySearchHistory(history);
+
+    if (history.length > 0) {
+        cityInput.value = history[0];
+        handleFormSubmit(new Event('submit'));
+    }
+}
+
+// Call initialize function on page load
+initialize();
