@@ -27,17 +27,6 @@ body {
   border: 2px solid gray;
 }
 
-/* Cards Styles */
-.card {
-  margin-right: 0px;
-  margin-bottom: 20px;
-}
-
-.five-day {
-  padding: 0px 0px 0px 0px;
-  flex: auto;
-}
-
 div,
 form,
 input {
@@ -61,28 +50,25 @@ input {
   border-radius: 8px;
 }
 
-/* Custom styles go here */
+/* 5 Day Forecast Cards */
 .forecast-cards {
-  display: flex;
-  overflow-x: auto;
-  margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
-    
+
 .forecast-card {
-  flex: 0 0 auto;
-  width: 18%;
-  margin-right: 10px;
+    flex: 0 0 calc(18% - 10px);
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
+
 
 @media (max-width: 576px) {
-  .forecast-cards {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-
-  .forecast-card {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
+    .forecast-card {
+        flex: 0 0 100%;
+        margin-right: 0;
+    }
 }
+
+

@@ -51,34 +51,39 @@ function filterDailyForecasts(forecasts) {
 
 // Function to display current weather details
 function displayCurrentWeather(data) {
-    currentWeather.innerHTML = `
-        <h4>${data.name}, ${new Date(data.dt * 1000).toLocaleDateString('en-GB')}</h4>
-        <p>Temperature: ${data.main.temp} °C</p>
-        <p>Wind: ${data.wind.speed} m/s</p>
-        <p>Humidity: ${data.main.humidity}%</p>
-    `;
+  const iconUrl = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+
+  currentWeather.innerHTML = `
+      <h4>${data.name}, ${new Date(data.dt * 1000).toLocaleDateString('en-GB')}</h4>
+      <img src="${iconUrl}" alt="${data.weather[0].description}">
+      <p>Temperature: ${data.main.temp} °C</p>
+      <p>Wind: ${data.wind.speed} m/s</p>
+      <p>Humidity: ${data.main.humidity}%</p>
+  `;
 }
 
 // Function to display 5-day forecast with one update per day at 12:00
 function displayForecast(forecastData) {
-    forecastCards.innerHTML = '';
-    forecastData.forEach(forecast => {
-        const card = document.createElement('div');
-        card.classList.add('card', 'forecast-card');
+  forecastCards.innerHTML = '';
+  forecastData.forEach(forecast => {
+      const iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
 
-        card.innerHTML = `
-            <div class="card-body">
-                <p><b>${new Date(forecast.dt * 1000).toLocaleDateString('en-GB')}</b></p>
-                <p>Temperature: ${forecast.main.temp} °C</p>
-                <p>Humidity: ${forecast.main.humidity}%</p>
-                <p>Wind: ${forecast.wind.speed} m/s</p>
-            </div>
-        `;
+      const card = document.createElement('div');
+      card.classList.add('card', 'forecast-card');
 
-        forecastCards.appendChild(card);
-    });
+      card.innerHTML = `
+          <div class="card-body">
+              <p><b>${new Date(forecast.dt * 1000).toLocaleDateString('en-GB')}</b></p>
+              <img src="${iconUrl}" alt="${forecast.weather[0].description}">
+              <p>Temp: ${forecast.main.temp} °C</p>
+              <p>Wind: ${forecast.wind.speed} m/s</p>
+              <p>Humidity: ${forecast.main.humidity}%</p>
+          </div>
+      `;
+
+      forecastCards.appendChild(card);
+  });
 }
-
 // Function to display search history
 function displaySearchHistory(history) {
     searchHistory.innerHTML = '';
