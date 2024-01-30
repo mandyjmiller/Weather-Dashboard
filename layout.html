@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 0px; 
+        }
+
+        /* Title Row Styles */
+        .title-row {
+            background-color: #3498db; /* Your preferred background color */
+            color: #fff; /* Text color for the title row */
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Navigation Bar Styles */
+        .sidebar {
+            background-color: #fff; 
+            color: #050000; /* Text color for the sidebar */
+            padding: 20px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 20px;
+        }
+
+        /* Cards Styles */
+        .card {
+            margin-right: 0px;
+            margin-bottom: 20px;
+        }
+
+
+        .five-day  {
+           padding: 0px 0px 0px 0px;
+           flex: auto;
+            }
+
+        button,
+        div,
+        form,
+            input {
+            margin: 10px;
+            }
+
+        #add-movie { 
+            background-color: #1202c4;
+            color: #fff;
+
+        }   
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Title Row -->
+    <div class="title-row">
+        <h1>Weather Dashboard</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Left Navigation Bar (25% width) -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+             <!-- Rendered Buttons will get Dumped Here  -->
+                <p>Search for a City</p>
+
+
+                <form id="movie-form">
+                  <input type="text" id="movie-input">
+                  <br>
+
+                  <!-- Button triggers new movie to be added -->
+                  <input id="add-movie" type="submit" value="Search">
+                </form>
+
+                  <!-- This is the list of previously searched cities -->
+                <div id="buttons-view"></div>
+            </nav>
+
+            <!-- Main Content (75% width) -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
+                <!-- Main Summary Row -->
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Main Summary</h2>
+                        <p>Your main content summary goes here.
+
+
+
+
+    <!-- Movies will Get Dumped Here -->
+    <div id="movies-view"></div>
+
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cards Row -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Card 1 -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card 1</h5>
+                                <p class="card-text">Card content goes here.</p>
+                            </div>
+                        </div>
+
+                        <!-- Repeat for Card 2 to Card 5 -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card 1</h5>
+                                <p class="card-text">Card content goes here.</p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+                <!-- Cards -->
+                <div class="container-fluid content">
+                    <h2 class="sectionHeading">5-Day Forecast</h2>
+                    <div class="row five-day">
+
+                    <!-- Card 1 -->
+                    <!-- <div class="cardContainer col-lg-4 col-md-4 col-sm-12"> -->
+                    <div class="cardContainer">
+                        <div class="card">
+                        <img src="assets/images/test-icon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">date 1</h5>
+                            <p class="card-text">This is the weather</p>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End card 1 -->
+
+                    <!-- Card 2 -->
+                    <div class="cardContainer">
+                        <div class="card">
+                        <img src="assets/images/test-icon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">date 2</h5>
+                            <p class="card-text">This is the weather</p>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End card 2 -->
+
+                    <!-- Card 3 -->
+                    <div class="cardContainer">
+                        <div class="card">
+                        <img src="assets/images/test-icon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">date 3</h5>
+                            <p class="card-text">This is the weather</p>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End card 3 -->
+
+                    <!-- Card 4 -->
+                    <div class="cardContainer">
+                        <div class="card">
+                        <img src="assets/images/test-icon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">date 4</h5>
+                            <p class="card-text">This is the weather</p>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End card 4 -->
+
+
+                    <!-- Card 5 -->
+                    <div class="cardContainer">
+                        <div class="card">
+                        <img src="assets/images/test-icon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">date 5</h5>
+                            <p class="card-text">This is the weather</p>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End card 5 -->
+
+                </div>
+                </div>
+                <!-- End cards -->
+
+
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
+</body>
+</html>

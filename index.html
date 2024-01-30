@@ -8,6 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
 
+
 </head>
 <body>
 
@@ -21,71 +22,45 @@
 
             <!-- Left Navigation Bar (25% width) -->
             <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-             <!-- Rendered Buttons will get Dumped Here  -->
-                <p>Search for a City</p>
-             
-
-                <form id="movie-form">
-                  <input type="text" id="movie-input">
-                  <br>
-            
-                  <!-- Button triggers new movie to be added -->
-                  <input id="add-movie" type="submit" value="Search">
-                </form>
-            
-                  <!-- This is the list of previously searched cities -->
-                <div id="buttons-view"></div>
-
-
-
-
+                <!-- Rendered Buttons will get Dumped Here -->
                 <form id="searchForm">
                     <div class="form-group">
-                        <label for="cityInput">City Name:</label>
-                        <input type="text" class="form-control" id="cityInput" placeholder="Enter city name" required>
+                        <label form="cityInput"><h5>Search for a City:</h5></label>
+                        <input type="text" class="form-control" id="cityInput" placeholder="Enter a City Name" required>
                     </div>
-
-            <!-- Button triggers new city to be added -->
+                    <!-- Button triggers new city to be added -->
                     <button type="submit" class="add-city">Search</button>
                 </form>
-                <div id="searchHistory" class="mt-3">
+                <div id="searchHistory">
                     <h4>Search History:</h4>
-             <!-- Rendered Buttons will display Here  -->
+                    <!-- Rendered Buttons will display Here -->
                 </div>
             </nav>
 
             <!-- Main Content (75% width) -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
                 <!-- Main Summary Row -->
- 
-                    <!-- WEATHER SCRIPT OUTPUT USING THIS ONE-->
-                    <div class="row mt-3">
-                        <div class="col-md-6" id="currentWeather">
-                            <!-- Current weather details will be displayed here -->
+                <!-- WEATHER SCRIPT OUTPUT USING THIS ONE-->
+                <div class="summary-content">
+                    <div class="col-md-6" id="currentWeather">
+                        <!-- Current weather details will be displayed here -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="mt-4">5-Day Forecast</h4>
+                        <div class="forecast-cards" id="forecastCards">
+                            <!-- 5-day forecast cards will be displayed here -->
                         </div>
                     </div>
-            
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="mt-4">5-Day Forecast</h4>
-                            <div class="forecast-cards" id="forecastCards">
-                                <!-- 5-day forecast cards will be displayed here -->
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="forecast-container" id="forecastContainer">
-                        <!-- 5-day forecast cards will be displayed here -->
-      
-                        
-           
-                    </div>
-
-                    <!-- WEATHER SCRIPT OUTPUT ABOVE USING THIS ONE -->
-
-
-
+                </div>
+                <div class="forecast-container" id="forecastContainer">
+                    <!-- 5-day forecast cards will be displayed here -->
+                </div>
+                <!-- WEATHER SCRIPT OUTPUT ABOVE USING THIS ONE -->
+            </main>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

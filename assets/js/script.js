@@ -84,7 +84,7 @@ function displaySearchHistory(history) {
     searchHistory.innerHTML = '';
     history.forEach(city => {
         const historyItem = document.createElement('p');
-        historyItem.classList.add('mb-0', 'text-primary', 'search-history-item');
+        historyItem.classList.add('search-history-item');
         historyItem.innerText = city;
         historyItem.addEventListener('click', () => handleHistoryItemClick(city));
         searchHistory.appendChild(historyItem);
