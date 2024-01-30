@@ -1,123 +1,88 @@
 body {
-    padding-top: 0px; 
+  padding-top: 0px;
 }
 
 /* Title Row Styles */
 .title-row {
-    background-color: #3498db; 
-    color: #fff; 
-    padding: 10px;
-    text-align: center;
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
 }
 
 /* Navigation Bar Styles */
 .sidebar {
-    background-color: #fff; 
-    color: #050000; 
-    padding: 20px;
+  background-color: #fff;
+  color: #050000;
+  padding: 20px;
 }
 
 /* Main Content Styles */
 .main-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 /* Top Summary Styles */
 .summary-content {
-    border: 2px solid gray;
+  border: 2px solid gray;
 }
-
 
 /* Cards Styles */
 .card {
-    margin-right: 0px;
-    margin-bottom: 20px;
+  margin-right: 0px;
+  margin-bottom: 20px;
 }
 
-
-.five-day  {
-   padding: 0px 0px 0px 0px;
-   flex: auto;
-    }
+.five-day {
+  padding: 0px 0px 0px 0px;
+  flex: auto;
+}
 
 div,
 form,
-    input {
-    margin: 5px;
-    width: 100%;
-    }
-
-#add-movie { 
-    background-color: #03A9F4;
-    color: #fff;
-    width: 100%;
-    border-radius: 8px;
-
-}   
-
-.add-city { 
-    background-color: #03A9F4;
-    color: #fff;
-    width: 100%;
-    border-radius: 8px;
-
-}   
+input {
+  margin: 5px;
+  width: 100%;
+}
 
 .add-city {
-    width: 100%;
-    border-radius: 8px;
-    align-items: start;
-    background-color: rgba(14, 0, 72, 0.829);
-    color: white;
-    padding: 5px;
-    margin-bottom: 10px;
+  background-color: #03a9f4;
+  color: #fff;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .search-history-item {
-    width: 100%;
-    background-color: slategrey;
-    color: white;
-    margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 8px;
+  width: 100%;
+  background-color: slategrey;
+  color: white;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 8px;
 }
 
+/* Custom styles go here */
+.forecast-cards {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 20px;
+}
 
+.forecast-card {
+  flex: 0 0 auto;
+  width: 18%;
+  margin-right: 10px;
+}
 
-.movie-btn { 
-    background-color: slategray;
-    margin: 5px;
+@media (max-width: 576px) {
+  .forecast-cards {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .forecast-card {
     width: 100%;
-    color: #fff;
-    border-radius: 8px;
-
-
-} 
-
-
-        /* Custom styles go here */
-        .forecast-cards {
-            display: flex;
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-
-        .forecast-card {
-            flex: 0 0 auto;
-            width: 18%;
-            margin-right: 10px;
-        }
-
-        @media (max-width: 576px) {
-            .forecast-cards {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-
-            .forecast-card {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
-
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
